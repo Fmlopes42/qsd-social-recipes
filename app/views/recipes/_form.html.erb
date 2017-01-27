@@ -1,0 +1,9 @@
+<section id="recipes">
+<%= form_for @recipe do |f| %>
+  <dl>
+    <dt><%= f.label :name, 'Nome' %></dt>
+    <dd><%= f.text_field :name %></dd>
+  </dl>
+  <%= f.submit text_submit %>
+<% end %>
+</section>

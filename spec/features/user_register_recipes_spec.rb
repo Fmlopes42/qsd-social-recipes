@@ -1,19 +1,21 @@
-require 'rails-helper'
+require 'rails_helper'
 
 feature 'User register recipes' do
   scenario 'successfully' do
-    recipe = Recipe.new(attributes_for(:recipe)
+    recipe = Recipe.new(attributes_for(:recipe))
 
     visit new_recipe_path
 
-    fill_in 'Nome' with recipe.name
-    fill_in 'Tipo de comida' with recipe.food_type
-    fill_in 'Cozinha' with recipe.kitchen
-    fill_in 'Quantas pessoas serve' with recipe.serves
-    fill_in 'Tempo de preparo' with recipe.prep_time
-    select  recipe.difficulty from 'Nivel de dificuldade'
-    fill_in 'Ingredientes' with recipe.ingredients
-    fill_in 'Passo a passo' with prep_steps
+    fill_in 'Nome',                  with: recipe.name
+    fill_in 'Tipo de comida',        with: recipe.food_type
+    fill_in 'Cozinha',               with: recipe.kitchen
+    fill_in 'Quantas pessoas serve', with: recipe.serves
+    fill_in 'Tempo de preparo',      with: recipe.prep_time
+    select  recipe.difficulty,       from: 'Nivel de dificuldade'
+    fill_in 'Ingredientes',          with: recipe.ingredients
+    fill_in 'Passo a passo',         with: prep_steps
+
+    click_on "Criar Receita"
 
     expect(page).to have_content recipe.name
     expect(page).to have_content recipe.food_type
