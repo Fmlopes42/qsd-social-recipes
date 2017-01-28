@@ -19,6 +19,8 @@
     <dd><%= f.text_field :ingredients %></dd>
     <dt><%= f.label :prep_steps, 'Passo a passo' %></dt>
     <dd><%= f.text_field :prep_steps %></dd>
+    <dt><%= f.label :picture, "Foto" %></dt>
+    <dd><%= f.file_field :picture %></dd>
   </dl>
   <%= f.submit text_submit %>
 <% end %>

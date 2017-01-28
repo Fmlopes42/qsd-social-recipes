@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
                                    :food_type, :cuisine_id,
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
-                                   :prep_steps)
+                                   :prep_steps, :picture)
   end
 
   def collections_all

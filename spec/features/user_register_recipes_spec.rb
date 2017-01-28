@@ -1,9 +1,11 @@
 require 'rails_helper'
 
+
 feature 'User register recipes' do
   scenario 'successfully' do
     cuisine = create(:cuisine)
     recipe = Recipe.new(attributes_for(:recipe, cuisine: cuisine))
+    picture = "#{Rails.root}/spec/pictures/miojo.jpg"
 
     visit new_recipe_path
 
@@ -15,6 +17,7 @@ feature 'User register recipes' do
     select recipe.difficulty.humanize,  from: 'Nível de dificuldade'
     fill_in 'Ingredientes',             with: recipe.ingredients
     fill_in 'Passo a passo',            with: recipe.prep_steps
+    attach_file("Foto", picture)
 
     click_on "Criar Receita"
 
@@ -26,5 +29,8 @@ feature 'User register recipes' do
     expect(page).to have_content recipe.difficulty.humanize
     expect(page).to have_content recipe.ingredients
     expect(page).to have_content recipe.prep_steps
+
+    expect(page).to have_xpath("//img[contains(@src,'miojo')]")
+
   end
 end
