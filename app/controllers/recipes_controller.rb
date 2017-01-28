@@ -1,5 +1,9 @@
 class RecipesController < ApplicationController
 
+  def index
+    collections_all
+  end
+
   def new
     @recipe = Recipe.new
     collections_all
@@ -27,6 +31,7 @@ class RecipesController < ApplicationController
   end
 
   def collections_all
+    @recipes = Recipe.all
     @difficulties = Recipe.difficulties
   end
 end
