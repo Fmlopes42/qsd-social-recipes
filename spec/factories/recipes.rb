@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :recipe do
     name 'Miojo'
-    kitchen 'Italiana'
+    cuisine
     food_type 'Massa'
     serves 1
     prep_time 3

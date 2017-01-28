@@ -10,9 +10,9 @@ class RecipesController < ApplicationController
   end
 
   def create
+    collections_all
     @recipe = Recipe.new(recipe_params)
     @recipe.save
-    collections_all
     redirect_to @recipe
   end
 
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :food_type,
-                                   :food_type, :kitchen,
+                                   :food_type, :cuisine_id,
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
                                    :prep_steps)
@@ -33,5 +33,6 @@ class RecipesController < ApplicationController
   def collections_all
     @recipes = Recipe.all
     @difficulties = Recipe.difficulties
+    @cuisines = Cuisine.all
   end
 end
