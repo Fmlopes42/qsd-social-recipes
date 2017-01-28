@@ -1,0 +1,22 @@
+<section id="recipe">
+<dl>
+  <dt>Nome</dt>
+  <dd><%= @recipe.name %></dd>
+  <dt>Tipo de comida</dt>
+  <dd><%= @recipe.food_type %></dd>
+  <dt>Cozinha</dt>
+  <dd><%= @recipe.kitchen %></dd>
+  <dt>Quantas pessoas serve</dt>
+  <dd><%= @recipe.serves %></dd>
+  <dt>Tempo de preparo</dt>
+  <dd><%= @recipe.prep_time %></dd>
+  <dt>Nível de dificuldade</dt>
+  <dd><%= @recipe.difficulty.humanize %></dd>
+  <dt> Ingredientes</dt>
+  <dd><%= @recipe.ingredients %></dd>
+  <dt>Passo a passo</dt>
+  <dd><%= @recipe.prep_steps %></dd>
+</dl>
+</section>
+
+<%= link_to "Voltar", root_path %>

@@ -2,11 +2,13 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    collections_all
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.save
+    collections_all
     redirect_to @recipe
   end
 
@@ -22,5 +24,9 @@ class RecipesController < ApplicationController
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
                                    :prep_steps)
+  end
+
+  def collections_all
+    @difficulties = Recipe.difficulties
   end
 end

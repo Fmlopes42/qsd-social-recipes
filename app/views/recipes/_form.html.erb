@@ -3,6 +3,22 @@
   <dl>
     <dt><%= f.label :name, 'Nome' %></dt>
     <dd><%= f.text_field :name %></dd>
+    <dt><%= f.label :kitchen, 'Cozinha' %></dt>
+    <dd><%= f.text_field :kitchen %></dd>
+    <dt><%= f.label :food_type, 'Tipo de comida' %></dt>
+    <dd><%= f.text_field :food_type %></dd>
+    <dt><%= f.label :serves, 'Quantas pessoas serve' %></dt>
+    <dd><%= f.text_field :serves %></dd>
+    <dt><%= f.label :prep_time, 'Tempo de preparo (em minutos)' %></dt>
+    <dd><%= f.text_field :prep_time %></dd>
+    <dt><%= f.label :difficulty, 'Nível de dificuldade' %></dt>
+    <dd><%= f.select :difficulty,
+        options_for_select(@difficulties.collect { |s| [s[0].humanize, s[0]] },
+        selected: @recipe.difficulty) %></dd>
+    <dt><%= f.label :ingredients, 'Ingredientes' %></dt>
+    <dd><%= f.text_field :ingredients %></dd>
+    <dt><%= f.label :prep_steps, 'Passo a passo' %></dt>
+    <dd><%= f.text_field :prep_steps %></dd>
   </dl>
   <%= f.submit text_submit %>
 <% end %>
