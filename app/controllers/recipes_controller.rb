@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :food_type,
-                                   :food_type, :cuisine_id,
+                                   :food_type_id, :cuisine_id,
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
                                    :prep_steps, :picture)
@@ -34,5 +34,6 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     @difficulties = Recipe.difficulties
     @cuisines = Cuisine.all
+    @food_types = FoodType.all
   end
 end

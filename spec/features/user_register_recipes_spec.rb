@@ -3,6 +3,7 @@ require 'rails_helper'
 
 feature 'User register recipes' do
   scenario 'successfully' do
+    food_type = create(:food_type)
     cuisine = create(:cuisine)
     recipe = Recipe.new(attributes_for(:recipe, cuisine: cuisine))
     picture = "#{Rails.root}/spec/pictures/miojo.jpg"
@@ -10,7 +11,7 @@ feature 'User register recipes' do
     visit new_recipe_path
 
     fill_in 'Nome',                     with: recipe.name
-    fill_in 'Tipo de comida',           with: recipe.food_type
+    select food_type.name,              from: 'Tipo de comida'
     select cuisine.name,                from: 'Cozinha'
     fill_in 'Quantas pessoas serve',    with: recipe.serves
     fill_in 'Tempo de preparo',         with: recipe.prep_time
@@ -22,7 +23,7 @@ feature 'User register recipes' do
     click_on "Criar Receita"
 
     expect(page).to have_content recipe.name
-    expect(page).to have_content recipe.food_type
+    expect(page).to have_content food_type.name
     expect(page).to have_content cuisine.name
     expect(page).to have_content recipe.serves
     expect(page).to have_content recipe.prep_time

@@ -1,13 +1,13 @@
-<section id="cuisine">
-  <h1><%= @cuisine.name %></h1>
+<section id="food_type">
+  <h1><%= @food_type.name %></h1>
 </section>
 
 <section id="recipes">
-  <% @cuisine.recipes.each do |recipe| %>
+  <% @food_type.recipes.each do |recipe| %>
     <h3><%= recipe.name %></h3>
     <dl>
-      <dt>Tipo de comida</dt>
-      <dd><%= recipe.food_type.name %></dd>
+      <dt>Cozinha</dt>
+      <dd><%= recipe.cuisine.name %></dd>
       <dt>Quantas pessoas serve</dt>
       <dd><%= recipe.serves %></dd>
       <dt>Tempo de preparo (em minutos)</dt>

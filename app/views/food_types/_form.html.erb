@@ -1,0 +1,11 @@
+<section id="food_type">
+  <%= form_for @food_type do |f| %>
+    <dl>
+      <dt><%= f.label :name, "Nome" %></dt>
+      <dd><%= f.text_field :name %></dd>
+    </dl>
+    <%= f.submit text_submit %>
+  <% end %>
+</section>
+
+<%= link_to "Voltar", root_path %>

@@ -5,8 +5,8 @@
     <dd><%= f.text_field :name %></dd>
     <dt><%= f.label :cuisine_id, 'Cozinha' %></dt>
     <dd><%= f.collection_select(:cuisine_id, @cuisines, :id, :name)%></dd>
-    <dt><%= f.label :food_type, 'Tipo de comida' %></dt>
-    <dd><%= f.text_field :food_type %></dd>
+    <dt><%= f.label :food_type_id, 'Tipo de comida' %></dt>
+    <dd><%= f.collection_select(:food_type_id, @food_types, :id, :name) %></dd>
     <dt><%= f.label :serves, 'Quantas pessoas serve' %></dt>
     <dd><%= f.text_field :serves %></dd>
     <dt><%= f.label :prep_time, 'Tempo de preparo (em minutos)' %></dt>

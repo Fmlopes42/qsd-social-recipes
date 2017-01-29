@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'User register recipe by cuisine' do
+feature 'Admin register cuisine' do
   scenario 'successfully' do
-    
+
     cuisine = Cuisine.new(attributes_for(:cuisine))
 
     visit new_cuisine_path
