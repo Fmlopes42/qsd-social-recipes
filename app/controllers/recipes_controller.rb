@@ -23,6 +23,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find params[:id]
   end
 
+  def search
+    search = params[:search]
+    @recipes = Recipe.all.select do |recipe|
+      recipe.name.downcase.include?(search.downcase)
+    end
+  end
+
   private
 
   def recipe_params

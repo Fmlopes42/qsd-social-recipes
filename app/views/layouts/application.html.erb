@@ -11,6 +11,15 @@
   <body>
     <header>
       <h1>Social Recipes</h1>
+
+      <section id="search">
+        <%= form_tag("/search", method: "get") do %>
+          <%= label_tag(:search, "Buscar Receita") %>
+          <%= text_field_tag(:search) %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+     </section>
+
     </header>
 
     <main>
