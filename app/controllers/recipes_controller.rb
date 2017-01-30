@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
 
   def index
-    collections_all
+    @recipes = Recipe.last(5)
+    @difficulties = Recipe.difficulties
+    @cuisines = Cuisine.all
+    @food_types = FoodType.all
   end
 
   def new

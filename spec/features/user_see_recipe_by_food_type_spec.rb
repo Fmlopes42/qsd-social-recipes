@@ -9,7 +9,7 @@ feature 'User see recipe by food type' do
     visit root_path
     click_on recipe.food_type.name
 
-    expect(page).to have_content recipe.food_type.name
+    expect(page).to have_content food_type.name
 
     expect(page).to have_content recipe.name
     expect(page).to have_content recipe.serves
