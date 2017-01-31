@@ -2,21 +2,22 @@ require "rails_helper"
 
 feature "User see five recent recipes" do
   scenario "succesfully" do
+    user = create(:user)
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-    recipe = create(:recipe, cuisine: cuisine, food_type: food_type)
+    recipe = create(:recipe, cuisine: cuisine, food_type: food_type, user: user)
     recipe_2 = create(:recipe, name: "Bolo_2", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
     recipe_3 = create(:recipe, name: "Bolo_3", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
     recipe_4 = create(:recipe, name: "Bolo_4", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
     recipe_5 = create(:recipe, name: "Bolo_5", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
     recipe_6 = create(:recipe, name: "Bolo_6", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
     recipe_7 = create(:recipe, name: "Bolo_7", cuisine: cuisine,
-                      food_type: food_type)
+                      food_type: food_type, user: user)
 
     visit root_path
 

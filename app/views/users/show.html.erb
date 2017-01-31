@@ -1,0 +1,15 @@
+<section id="user">
+  <%= @user.name %>
+  <%= @user.mail %>
+</section>
+
+<section id="recipes">
+  <h1>Recipes</h1>
+  <p><%= link_to "Criar receita", new_recipe_path %></p>
+
+  <% @user.recipes.each do |recipe| %>
+    <%= link_to recipe.name, recipe_path(recipe) %>
+  <% end %>
+</section>
+
+<p><%= link_to "Voltar", root_path %>

@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'User see recipe by cuisine' do
   scenario 'successfully' do
+    user = create(:user)
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-    recipe = create(:recipe, cuisine: cuisine, food_type: food_type)
+    recipe = create(:recipe, cuisine: cuisine, food_type: food_type, user: user)
 
     visit root_path
 

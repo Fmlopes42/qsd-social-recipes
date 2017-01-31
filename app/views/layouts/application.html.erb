@@ -20,10 +20,20 @@
         <% end %>
      </section>
 
+     <section id="login">
+       <%= link_to "Criar usuário", new_user_path %>
+     </section>
+
     </header>
 
     <main>
-    <%= yield %>
+    <div class="container">
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
     </main>
   </body>
 </html>

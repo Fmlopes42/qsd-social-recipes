@@ -2,14 +2,15 @@ require 'rails_helper'
 
 feature 'User see recipes list' do
   scenario 'succesfully' do
+  user = create(:user)
   food_type = create(:food_type)
   cuisine = create(:cuisine)
 
-  recipe = create(:recipe)
+  recipe = create(:recipe, cuisine: cuisine, food_type: food_type, user: user)
   another_recipe = create(:recipe, name: "Feijão", cuisine: cuisine,
                           food_type: food_type, prep_time: 30, serves: 5,
                           difficulty: 1, ingredients: "Àgua e feijão",
-                          prep_steps: "Vish")
+                          prep_steps: "Vish", user: user)
 
   visit root_path
 

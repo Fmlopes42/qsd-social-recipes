@@ -1,4 +1,4 @@
 class Cuisine < ApplicationRecord
   has_many :recipes
-#  validates :name, uniqueness: { case_sensitive: false },  presence: true
+#  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

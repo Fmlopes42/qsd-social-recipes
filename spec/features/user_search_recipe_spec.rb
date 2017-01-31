@@ -2,11 +2,12 @@ require 'rails_helper'
 
 feature "User search recipe" do
   scenario "successfully" do
+    user = create(:user)
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-    recipe = create(:recipe, food_type: food_type, cuisine: cuisine)
+    recipe = create(:recipe, food_type: food_type, cuisine: cuisine, user: user)
     another_recipe = create(:recipe, name: "Miojo com ovo",
-                            food_type: food_type, cuisine: cuisine)
+                            food_type: food_type, cuisine: cuisine, user: user)
 
     recipe_search = "Miojo"
 
@@ -22,11 +23,12 @@ feature "User search recipe" do
   end
 
   scenario "and can do it from any page" do
+    user = create(:user)
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-    recipe = create(:recipe, food_type: food_type, cuisine: cuisine)
+    recipe = create(:recipe, food_type: food_type, cuisine: cuisine, user: user)
     another_recipe = create(:recipe, name: "Feijoada", food_type: food_type,
-                            cuisine: cuisine)
+                            cuisine: cuisine, user: user)
 
     recipe_search = "Miojo"
     another_recipe_search = "Feijoada"
