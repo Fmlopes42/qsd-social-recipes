@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
                                    :food_type_id, :cuisine_id,
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
-                                   :prep_steps, :picture)
+                                   :prep_steps, :picture, :user_id)
   end
 
   def collections_all
@@ -45,5 +45,6 @@ class RecipesController < ApplicationController
     @difficulties = Recipe.difficulties
     @cuisines = Cuisine.all
     @food_types = FoodType.all
+    @users = User.all
   end
 end

@@ -2,7 +2,7 @@ require  'rails_helper'
 
 feature  'User authenticates himself' do
   scenario 'successfully' do
-    user = create(:user)
+    user = User.new(attributes_for(:user))
 
     visit root_path
 
@@ -17,8 +17,6 @@ feature  'User authenticates himself' do
 
     expect(page).to have_content user.name
     expect(page).to have_content user.mail
-    expect(page).to have_content user.password
-    expect(page).to have_content user.password_confirmation
   end
 
   scenario 'and submit recipes' do
@@ -45,7 +43,7 @@ feature  'User authenticates himself' do
 
     click_on "Criar Receita"
 
-    expect(page).to have_content user.name
+  #  expect(page).to have_content user.name
     expect(page).to have_content recipe.name
     expect(page).to have_content food_type.name
     expect(page).to have_content cuisine.name
