@@ -22,6 +22,15 @@
 
      <section id="login">
        <%= link_to "Criar usuário", new_user_path %>
+       <%= form_for(:session, url: login_path) do |f| %>
+         <dl>
+           <dt><%= f.label :mail, "E-mail" %></dt>
+           <dd><%= f.email_field :mail %></dd>
+           <dt><%= f.label :password, "Senha" %></dt>
+           <dd><%= f.password_field :password %></dt>
+        </dl>
+           <%= f.submit "Entrar" %>
+      <% end %>
      </section>
 
     </header>

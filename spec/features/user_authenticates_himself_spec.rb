@@ -7,52 +7,33 @@ feature  'User authenticates himself' do
     visit root_path
 
     click_on "Criar usuário"
-
-    fill_in "Nome",            with: user.name
-    fill_in "E-mail",          with: user.mail
-    fill_in "Senha",           with: user.password
-    fill_in "Confirmar senha", with: user.password_confirmation
+    within "section#user" do
+      fill_in "Nome",            with: user.name
+      fill_in "E-mail",          with: user.mail
+      fill_in "Senha",           with: user.password
+      fill_in "Confirmar senha", with: user.password_confirmation
+    end
 
     click_on "Criar Usuário"
 
-    expect(page).to have_content user.name
-    expect(page).to have_content user.mail
+    expect(page).to have_content "Bem vindo ao Social Recipes, #{user.name}"
   end
 
-  scenario 'and submit recipes' do
+  scenario 'and can log in' do
+
     user = create(:user)
-    cuisine = create(:cuisine)
-    food_type = create(:food_type)
-    recipe = Recipe.new(attributes_for(:recipe, cuisine: cuisine,
-                                       food_type: food_type, user: user))
-    picture = "#{Rails.root}/spec/pictures/miojo.jpg"
 
-    visit user_path(user)
+    visit root_path
 
-    click_on "Criar receita"
+    fill_in "E-mail",          with: user.mail
+    fill_in "Senha",           with: user.password
 
-    fill_in 'Nome',                     with: recipe.name
-    select food_type.name,              from: 'Tipo de comida'
-    select cuisine.name,                from: 'Cozinha'
-    fill_in 'Quantas pessoas serve',    with: recipe.serves
-    fill_in 'Tempo de preparo',         with: recipe.prep_time
-    select recipe.difficulty.humanize,  from: 'Nível de dificuldade'
-    fill_in 'Ingredientes',             with: recipe.ingredients
-    fill_in 'Passo a passo',            with: recipe.prep_steps
-    attach_file("Foto", picture)
+    click_on "Entrar"
 
-    click_on "Criar Receita"
-
-  #  expect(page).to have_content user.name
-    expect(page).to have_content recipe.name
-    expect(page).to have_content food_type.name
-    expect(page).to have_content cuisine.name
-    expect(page).to have_content recipe.serves
-    expect(page).to have_content recipe.prep_time
-    expect(page).to have_content recipe.difficulty.humanize
-    expect(page).to have_content recipe.ingredients
-    expect(page).to have_content recipe.prep_steps
-    expect(page).to have_xpath("//img[contains(@src,'miojo')]")
+    expect(page).to have_content user.name
+    expect(page).to have_content user.mail
+    expect(page).to have_content "Criar receita"
+    expect(page).to have_content "Minhas receitas"
   end
 
 end
