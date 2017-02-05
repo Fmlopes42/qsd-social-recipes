@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170130204116) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cuisines", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -26,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170130204116) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
+    t.string   "cuisine"
     t.string   "food_type"
     t.integer  "serves"
     t.integer  "prep_time"
@@ -38,17 +42,20 @@ ActiveRecord::Schema.define(version: 20170130204116) do
     t.string   "picture"
     t.integer  "food_type_id"
     t.integer  "user_id"
-    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
-    t.index ["food_type_id"], name: "index_recipes_on_food_type_id"
-    t.index ["user_id"], name: "index_recipes_on_user_id"
+    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id", using: :btree
+    t.index ["food_type_id"], name: "index_recipes_on_food_type_id", using: :btree
+    t.index ["user_id"], name: "index_recipes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "mail"
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "password_digest"
   end
 
+  add_foreign_key "recipes", "cuisines"
+  add_foreign_key "recipes", "food_types"
+  add_foreign_key "recipes", "users"
 end
