@@ -10,29 +10,24 @@
 
   <body>
     <header>
-      <h1>Social Recipes</h1>
+      <div class="container">
+        <h1>Social Recipes</h1>
 
-      <section id="search">
-        <%= form_tag("/search", method: "get") do %>
-          <%= label_tag(:search, "Buscar Receita") %>
-          <%= text_field_tag(:search) %>
-          <%= submit_tag("Buscar") %>
-        <% end %>
-     </section>
+        <%= button_to "Entrar", login_path, method: "get" %>
+        <%= button_to "Criar usuário", new_user_path, method: "get" %>
 
-     <section id="login">
-       <%= link_to "Criar usuário", new_user_path %>
-       <%= form_for(:session, url: login_path) do |f| %>
-         <dl>
-           <dt><%= f.label :mail, "E-mail" %></dt>
-           <dd><%= f.email_field :mail %></dd>
-           <dt><%= f.label :password, "Senha" %></dt>
-           <dd><%= f.password_field :password %></dt>
-        </dl>
-           <%= f.submit "Entrar" %>
-      <% end %>
-     </section>
-
+        <div class="row">
+          <section id="search">
+            <div class="col-md-3">
+              <%= form_tag("/search", method: "get") do %>
+                <%= label_tag(:search, "Buscar Receita") %>
+                <%= text_field_tag(:search) %>
+                <%= submit_tag("Buscar") %>
+              <% end %>
+            </div>
+          </section>
+        </div>
+      </div>
     </header>
 
     <main>

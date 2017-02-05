@@ -15,8 +15,13 @@ class RecipesController < ApplicationController
   def create
     collections_all
     @recipe = Recipe.new(recipe_params)
-    @recipe.save
-    redirect_to @recipe
+    if @recipe.save
+      redirect_to @recipe
+      flash[:notice] = "Receita criada com sucesso!"
+    else
+      flash.now[:notice] = "Sua receita não pôde ser criada =("
+      render :new
+    end
   end
 
   def show

@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
-  validates :name, :cuisine_id, :food_type_id, :user_id, :ingredients,
-            :prep_steps, presence: true
+  validates :name, :cuisine_id, :food_type_id, :ingredients,
+            :prep_steps, :user_id, presence: true
   belongs_to :cuisine
   belongs_to :food_type
   belongs_to :user

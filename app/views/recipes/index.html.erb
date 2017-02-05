@@ -1,6 +1,6 @@
 <section id="cuisines">
   <h1>Cozinhas</h1>
-  <p><%= link_to "Cadastrar nova cozinha", new_cuisine_path %></p>
+  <p><%= button_to "Cadastrar nova cozinha", new_cuisine_path, method: :get %></p>
   <% @cuisines.each do |cuisine| %>
     <h3><%= link_to cuisine.name, cuisine_path(cuisine) %></h3>
   <% end %>
@@ -8,7 +8,7 @@
 
 <section id="food_types">
   <h1>Tipos de comida</h1>
-  <p><%= link_to "Cadastrar novo tipo de comida", new_food_type_path %></p>
+  <p><%= button_to "Cadastrar novo tipo de comida", new_food_type_path, method: :get %></p>
   <% @food_types.each do |food_type| %>
     <h3><%= link_to food_type.name, food_type_path(food_type) %></h3>
   <% end %>
@@ -16,7 +16,7 @@
 
 <section id="recipes">
   <h1>Receitas</h1>
-  <p><%= link_to "Cadastrar nova receita", new_recipe_path %></p>
+  <p><%= button_to "Cadastrar nova receita", new_recipe_path, method: :get %></p>
   <div>
     <% @recipes.each do |recipe| %>
       <%= image_tag recipe.picture.url unless recipe.picture.blank? %>

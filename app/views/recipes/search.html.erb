@@ -1,7 +1,9 @@
 <section id="recipes">
-  <%= @recipes.each do |recipe| %>
+  <% @recipes.each do |recipe| %>
     <div class="recipe">
       <%= link_to recipe.name, recipe_path(recipe)%>
     </div>
   <% end %>
 </section>
+
+<%= button_to "Voltar", root_path, method: :get %>

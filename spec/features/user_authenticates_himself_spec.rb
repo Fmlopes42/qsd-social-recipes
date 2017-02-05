@@ -25,15 +25,17 @@ feature  'User authenticates himself' do
 
     visit root_path
 
-    fill_in "E-mail",          with: user.mail
-    fill_in "Senha",           with: user.password
-
     click_on "Entrar"
 
-    expect(page).to have_content user.name
-    expect(page).to have_content user.mail
-    expect(page).to have_content "Criar receita"
-    expect(page).to have_content "Minhas receitas"
+    within 'section#login' do
+      fill_in "E-mail",          with: user.mail
+      fill_in "Senha",           with: user.password
+
+      click_on "Entrar"
+    end
+
+    expect(page).to have_content "Bem-vindo, #{@user}!"
+
   end
 
 end
