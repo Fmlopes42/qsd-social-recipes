@@ -6,5 +6,4 @@ class Recipe < ApplicationRecord
   belongs_to :user
   enum difficulty: { easy: 1, medium: 2, hard: 3 }
   mount_uploader :picture, PictureUploader
-
 end

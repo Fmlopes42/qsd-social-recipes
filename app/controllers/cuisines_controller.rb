@@ -1,5 +1,4 @@
 class CuisinesController < ApplicationController
-
   def new
     @cuisine = Cuisine.new
     collections_all
@@ -26,5 +25,4 @@ class CuisinesController < ApplicationController
   def collections_all
     @cuisines = Cuisine.all
   end
-
 end

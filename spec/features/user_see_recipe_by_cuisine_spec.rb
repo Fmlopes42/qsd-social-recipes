@@ -11,11 +11,11 @@ feature 'User see recipe by cuisine' do
 
     click_on cuisine.name
 
-    within("section#cuisine") do
+    within('section#cuisine') do
       expect(page).to have_content cuisine.name
     end
 
-    within("section#recipes") do
+    within('section#recipes') do
       expect(page).to have_content recipe.name
       expect(page).to have_content recipe.food_type.name
       expect(page).to have_content recipe.serves
@@ -24,6 +24,5 @@ feature 'User see recipe by cuisine' do
       expect(page).to have_content recipe.ingredients
       expect(page).to have_content recipe.prep_steps
     end
-
   end
 end

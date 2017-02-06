@@ -1,5 +1,4 @@
 class RecipesController < ApplicationController
-
   def index
     @recipes = Recipe.last(5)
     @difficulties = Recipe.difficulties
