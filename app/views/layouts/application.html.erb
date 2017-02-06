@@ -13,21 +13,33 @@
       <div class="container">
         <h1>Social Recipes</h1>
 
-        <%= button_to "Entrar", login_path, method: "get" %>
-        <%= button_to "Criar usuário", new_user_path, method: "get" %>
-
         <div class="row">
+
           <section id="search">
-            <div class="col-md-3">
+            <div class="col-md-5">
               <%= form_tag("/search", method: "get") do %>
-                <%= label_tag(:search, "Buscar Receita") %>
-                <%= text_field_tag(:search) %>
-                <%= submit_tag("Buscar") %>
+              <%= label_tag(:search, "Buscar Receita") %>
+              <%= text_field_tag(:search) %>
+              <%= submit_tag("Buscar") %>
               <% end %>
             </div>
           </section>
+
+          <% if current_user %>
+            <div class="col-md-6 text-right">
+              <%= button_to "Sair", logout_path, method: "delete" %>
+            </div>
+          <% else %>
+            <div class="col-md-2 text-right">
+              <%= button_to "Entrar", login_path, method: "get" %>
+            </div>
+            <div class="col-md-3">
+              <%= button_to "Criar usuário", new_user_path, method: "get" %>
+            </div>
+          <% end %>
+
         </div>
-      </div>
+
     </header>
 
     <main>

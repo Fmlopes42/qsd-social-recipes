@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(mail: params[:session][:mail].downcase)
-    if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
+    @user = User.find_by(mail: params[:session][:mail].downcase)
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
       redirect_to root_path
-      flash[:notice]= "Bem-vindo, #{@user}!"
+      flash[:notice]= "Bem-vindo(a) de volta, #{@user.name}!"
     else
       flash.now[:notice] = "E-mail ou senha inválido"
       render :new
