@@ -1,5 +1,4 @@
 class FoodTypesController < ApplicationController
-
   def new
     collections_all
     @food_type = FoodType.new
@@ -26,5 +25,4 @@ class FoodTypesController < ApplicationController
   def collections_all
     @food_types = FoodType.all
   end
-
 end

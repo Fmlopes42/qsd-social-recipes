@@ -17,6 +17,5 @@ feature 'User see recipe by food type' do
     expect(page).to have_content recipe.difficulty.humanize
     expect(page).to have_content recipe.ingredients
     expect(page).to have_content recipe.prep_steps
-
   end
 end

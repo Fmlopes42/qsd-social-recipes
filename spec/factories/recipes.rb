@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :recipe do
     name 'Miojo'
     cuisine
-    food_type 
+    food_type
     serves 1
     prep_time 3
     difficulty 1
