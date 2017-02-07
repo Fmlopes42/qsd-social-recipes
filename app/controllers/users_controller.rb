@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.save
     if @user.save
-      redirect_to root_path
-      flash[:notice] = "Bem vindo ao Social Recipes, #{@user.name}!"
+      redirect_to login_path
+      flash[:notice] = 'Usuário criado com sucesso!'
     else
       flash.now[:notice] = 'Não foi possível criar o usuário'
       render :new

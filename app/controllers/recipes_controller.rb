@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  # before_action :authenticate_user!
+
   def index
     @recipes = Recipe.last(5)
     @difficulties = Recipe.difficulties
@@ -18,7 +20,7 @@ class RecipesController < ApplicationController
       redirect_to @recipe
       flash[:notice] = 'Receita criada com sucesso!'
     else
-      flash.now[:notice] = 'Sua receita não pôde ser criada =('
+      flash.now[:notice] = 'Sua receita nao pode ser criada =('
       render :new
     end
   end
@@ -37,12 +39,10 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :food_type,
-                                   :food_type_id, :cuisine_id,
-                                   :serves, :prep_time,
-                                   :difficulty, :ingredients,
-                                   :prep_steps, :picture,
-                                   :user_id, :current_user)
+    params.require(:recipe).permit(:name, :food_type_id, :cuisine_id,
+                                   :serves, :prep_time, :difficulty,
+                                   :ingredients, :prep_steps, :picture,
+                                   user: current_user)
   end
 
   def collections_all

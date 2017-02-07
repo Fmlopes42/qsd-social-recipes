@@ -16,7 +16,7 @@ feature  'User authenticates himself' do
 
     click_on 'Criar Usuário'
 
-    expect(page).to have_content "Bem vindo ao Social Recipes, #{user.name}"
+    expect(page).to have_content 'Usuário criado com sucesso!'
   end
 
   scenario 'and can log in' do
