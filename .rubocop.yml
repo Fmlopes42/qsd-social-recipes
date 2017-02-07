@@ -18,4 +18,4 @@ AllCops:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
 Metrics/BlockLength:
-  Max: 27
+  Max: 30

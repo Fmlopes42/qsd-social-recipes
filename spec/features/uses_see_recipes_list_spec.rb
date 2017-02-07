@@ -4,13 +4,13 @@ feature 'User see recipes list' do
   scenario 'succesfully' do
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-
-    recipe = create(:recipe)
+    user = create(:user)
+    recipe = create(:recipe, cuisine: cuisine, food_type: food_type, user: user)
     another_recipe = create(:recipe, name: 'Feijão', cuisine: cuisine,
                                      food_type: food_type, prep_time: 30,
                                      serves: 5, difficulty: 1,
                                      ingredients: 'Àgua e feijão',
-                                     prep_steps: 'Passo a passo')
+                                     prep_steps: 'Passo a passo', user: user)
 
     visit root_path
     expect(page).to have_content recipe.name

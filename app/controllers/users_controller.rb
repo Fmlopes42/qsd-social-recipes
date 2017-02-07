@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Bem vindo ao Social Recipes, #{@user.name}!"
     else
-      flash.now[:notice] = "Não foi possível criar o usuário"
+      flash.now[:notice] = 'Não foi possível criar o usuário'
       render :new
     end
   end

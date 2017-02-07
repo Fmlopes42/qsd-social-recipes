@@ -4,7 +4,10 @@ feature 'User register recipes' do
   scenario 'successfully' do
     food_type = create(:food_type)
     cuisine = create(:cuisine)
-    recipe = Recipe.new(attributes_for(:recipe, cuisine: cuisine))
+    user = create(:user)
+    recipe = Recipe.new(attributes_for(:recipe, cuisine: cuisine,
+                                                food_type: food_type,
+                                                user: user))
     # picture = "#{Rails.root}/spec/pictures/miojo.jpg"
     picture = Rails.root.join('spec', 'pictures', 'miojo.jpg')
 

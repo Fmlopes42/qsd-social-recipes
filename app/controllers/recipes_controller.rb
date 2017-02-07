@@ -16,9 +16,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       redirect_to @recipe
-      flash[:notice] = "Receita criada com sucesso!"
+      flash[:notice] = 'Receita criada com sucesso!'
     else
-      flash.now[:notice] = "Sua receita não pôde ser criada =("
+      flash.now[:notice] = 'Sua receita não pôde ser criada =('
       render :new
     end
   end
@@ -41,7 +41,8 @@ class RecipesController < ApplicationController
                                    :food_type_id, :cuisine_id,
                                    :serves, :prep_time,
                                    :difficulty, :ingredients,
-                                   :prep_steps, :picture, :user_id)
+                                   :prep_steps, :picture,
+                                   :user_id, :current_user)
   end
 
   def collections_all

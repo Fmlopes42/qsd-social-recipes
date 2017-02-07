@@ -4,9 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def authenticate_user!
@@ -14,5 +12,4 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
-
 end
