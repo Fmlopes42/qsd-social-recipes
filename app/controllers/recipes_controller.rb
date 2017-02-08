@@ -29,6 +29,13 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find params[:id]
   end
+  
+  def search
+    search = params[:search]
+    @recipes = Recipe.all.select do |recipe|
+      recipe.name.downcase.include?(search.downcase)
+    end
+  end
 
   def edit
     @recipe = Recipe.find params[:id]
@@ -44,13 +51,6 @@ class RecipesController < ApplicationController
     else
       flash.now[:notice] = 'Não foi possível editar a receita.'
       render :edit
-    end
-  end
-
-  def search
-    search = params[:search]
-    @recipes = Recipe.all.select do |recipe|
-      recipe.name.downcase.include?(search.downcase)
     end
   end
 

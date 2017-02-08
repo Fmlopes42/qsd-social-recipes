@@ -2,29 +2,30 @@
   <div class="image">
     <%= image_tag @recipe.picture.url unless @recipe.picture.blank? %>
   </div>
-  <div>
+  <div class="dl-horizontal">
     <h1><%= @recipe.name %></h1>
     <dl>
       <dt>Tipo de comida</dt>
       <dd><%= @recipe.food_type.name %></dd>
       <dt>Cozinha</dt>
       <dd><%= @recipe.cuisine.name %></dd>
-      <dt>Quantas pessoas serve</dt>
-      <dd><%= @recipe.serves %></dd>
+      <dt>Serve</dt>
+      <dd><%= @recipe.serves %> pessoa(s)</dd>
       <dt>Tempo de preparo</dt>
-      <dd><%= @recipe.prep_time %></dd>
+      <dd><%= @recipe.prep_time %> minuto(s)</dd>
       <dt>Nível de dificuldade</dt>
       <dd><%= @recipe.difficulty.humanize %></dd>
       <dt> Ingredientes</dt>
       <dd><%= @recipe.ingredients %></dd>
       <dt>Passo a passo</dt>
       <dd><%= @recipe.prep_steps %></dd>
+      <dt>Criado por</dt>
+      <dd><%= @recipe.user.name %></dd>
     </dl>
     <% if @recipe.user == current_user %>
-      <p><%= button_to "Editar", edit_recipe_path(@recipe), method: :get %></p>
-      <%= button_to "Excluir", @recipe_id, method: :delete %>
+      <%= link_to "Editar", edit_recipe_path(@recipe), method: :get, class: "btn btn-default" %>
+      <%= link_to "Excluir", @recipe_id, method: :delete, class: "btn btn-default" %>
     <% end %>
   </div>
+  <%= link_to "Voltar", root_path, method: :get, class: "btn btn-default" %>
 </section>
-
-<%= button_to "Voltar", root_path, method: :get %>

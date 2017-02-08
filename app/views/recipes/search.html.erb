@@ -1,8 +1,12 @@
 <section id="recipes">
-  <% @recipes.each do |recipe| %>
-    <div class="recipe">
-      <%= link_to recipe.name, recipe_path(recipe)%>
-    </div>
+  <% if @recipes %>
+    <% @recipes.each do |recipe| %>
+      <div class="recipe">
+        <%= link_to recipe.name, recipe_path(recipe)%>
+      </div>
+    <% end %>
+  <% else %>
+    <h2>Nenhuma receita encontrada =/</h2>
   <% end %>
 </section>
 

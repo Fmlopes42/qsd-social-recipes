@@ -1,44 +1,53 @@
-<section id="cuisines">
-  <h1>Cozinhas</h1>
-  <% @cuisines.each do |cuisine| %>
-    <h3><%= link_to cuisine.name, cuisine_path(cuisine) %></h3>
-  <% end %>
-</section>
-
-<section id="food_types">
-  <h1>Tipos de comida</h1>
-  <% @food_types.each do |food_type| %>
-    <h3><%= link_to food_type.name, food_type_path(food_type) %></h3>
-  <% end %>
-</section>
-
-<section id="recipes">
-  <h1>Receitas</h1>
-  <p><%= button_to "Cadastrar nova receita", new_recipe_path, method: :get %></p>
-  <div>
-    <% @recipes.each do |recipe| %>
-      <%= image_tag recipe.picture.url unless recipe.picture.blank? %>
-      <h1><%= link_to recipe.name, recipe_path(recipe) %></h1>
-      <dl>
-        <dt>Cozinha</dt>
-        <dd><%= recipe.cuisine.name %></dd>
-        <dt>Tipo de comida</dt>
-        <dd><%= recipe.food_type.name %></dd>
-        <dt>Quantas pessoas serve</dt>
-        <dd><%= recipe.serves %></dd>
-        <dt>Tempo de preparo (em minutos)</dt>
-        <dd><%= recipe.prep_time %></dd>
-        <dt>Dificuldade</dt>
-        <dd><%= recipe.difficulty.humanize %></dd>
-        <dt>Ingredientes</dt>
-        <dd><%= recipe.ingredients %></dd>
-        <dt>Passo a passo</dt>
-        <dd><%= recipe.prep_steps %></dd>
-      </dl>
-      <% if recipe.user == current_user %>
-        <p><%= button_to "Editar", edit_recipe_path(recipe), method: :get %></p>
-        <%= button_to "Excluir", @recipe_id, method: :delete %>
+<div class="col-md-4 text-left">
+  <section id="cuisines">
+    <h1>Cozinhas</h1>
+    <ul class="list-group">
+      <% @cuisines.each do |cuisine| %>
+        <h3><%= link_to cuisine.name, cuisine_path(cuisine), class: "list-group-item" %></h3>
       <% end %>
+    </ul>
+  </section>
+
+  <section id="food_types">
+    <h1>Tipos de comida</h1>
+    <ul class="list-group">
+      <% @food_types.each do |food_type| %>
+        <h3><%= link_to food_type.name, food_type_path(food_type) , class: "list-group-item"%></h3>
+      <% end %>
+    <ul>
+  </section>
+</div>
+
+<div class="col-md-4">
+  <section id="recipes">
+    <h1>Receitas</h1>
+    <% @recipes.each do |recipe| %>
+      <div class="thumbnail">
+        <%= image_tag recipe.picture.url, width: 200, height: 200 unless recipe.picture.blank? %>
+        <div class="caption">
+          <h2 class="text-center"><%= link_to recipe.name, recipe_path(recipe) %></h2>
+          <dl class="dl-horizontal">
+            <dt>Cozinha</dt>
+            <dd><%= recipe.cuisine.name%></dd>
+            <dt>Tipo de comida</dt>
+            <dd><%= recipe.food_type.name %></dd>
+            <dt>Serve</dt>
+            <dd><%= recipe.serves %> pessoa(s)</dd>
+            <dt>Tempo de preparo</dt>
+            <dd><%= recipe.prep_time %> minuto(s)</dd>
+            <dt>Dificuldade</dt>
+            <dd><%= recipe.difficulty.humanize %></dd>
+            <dt>Ingredientes</dt>
+            <dd><%= recipe.ingredients %></dd>
+            <dt>Passo a passo</dt>
+            <dd><%= recipe.prep_steps %></dd>
+          </dl>
+          <% if recipe.user == current_user %>
+            <%= link_to "Editar", edit_recipe_path(recipe), method: :get, class: "btn btn-default btn-xs" %>
+            <%= link_to "Excluir", @recipe_id, method: :delete, class: "btn btn-default btn-xs" %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </div>
-</section>
+  </section>
+</div>

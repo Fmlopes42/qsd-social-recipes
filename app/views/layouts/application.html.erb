@@ -10,37 +10,45 @@
 
   <body>
     <header>
-      <div class="container">
-        <h1>Social Recipes</h1>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-brand"><%= link_to "Social Recipes", root_path %></div>
 
-        <div class="row">
+          <div class="row">
 
-          <section id="search">
-            <div class="col-md-5">
-              <%= form_tag("/search", method: "get") do %>
-              <%= label_tag(:search, "Buscar Receita") %>
-              <%= text_field_tag(:search) %>
-              <%= submit_tag("Buscar") %>
-              <% end %>
-            </div>
-          </section>
+            <section id="search">
+              <div class="col-md-4">
+                <form class="navbar-form navbar-left">
+                  <%= form_tag("/search", method: "get") do %>
+                    <%= label_tag(:search, "Buscar Receita") %>
+                    <%= text_field_tag(:search) %>
+                    <%= submit_tag("Buscar") %>
+                  <% end %>
+                </form>
+              </div>
+            </section>
 
-          <section id="authentication">
-            <% if current_user %>
-              <div class="col-md-6 text-right">
-                <%= button_to "Sair", logout_path, method: "delete" %>
-              </div>
-            <% else %>
-              <div class="col-md-2 text-right">
-                <%= button_to "Entrar", login_path, method: "get" %>
-              </div>
-              <div class="col-md-3">
-                <%= button_to "Criar usuário", new_user_path, method: "get" %>
-              </div>
-            <% end %>
-          </section>
+            <section id="authentication">
+                <div class="col-md-1 col-md-offset-2">
+                  <%= link_to "Criar receita", new_recipe_path, method: :get, class: "btn btn-default navbar-btn" %>
+                </div>
+                <% if current_user %>
+                  <div class="col-md-3">
+                    <%=link_to "Sair", logout_path, method: "delete", class: "btn btn-default text-rigth navbar-btn" %>
+                 </div>
+                <% else %>
+                  <div class="col-md-1">
+                    <%= link_to "Criar usuário", new_user_path, method: "get", class: "btn btn-default navbar-btn" %>
+                  </div>
+                  <div class="col-md-1">
+                    <%= link_to "Entrar", login_path, method: "get", class: "btn btn-default navbar-btn" %>
+                  </div>
+                <% end %>
+            </section>
+
+          </div>
         </div>
-
+     </nav>
     </header>
 
     <main>

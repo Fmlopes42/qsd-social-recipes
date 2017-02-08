@@ -1,11 +1,15 @@
 <section id="food_type">
-  <%= form_for @food_type do |f| %>
-    <dl>
-      <dt><%= f.label :name, "Nome" %></dt>
-      <dd><%= f.text_field :name %></dd>
-    </dl>
-    <%= f.submit text_submit %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for @food_type do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "Nome" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <%= f.submit text_submit, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
 </section>
 
-<%= button_to "Voltar", root_path, method: :get %>
+<%= button_to "Voltar", root_path, method: :get, class: "btn btn-default" %>
