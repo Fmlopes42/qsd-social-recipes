@@ -11,6 +11,7 @@ feature 'User register recipes' do
     # picture = "#{Rails.root}/spec/pictures/miojo.jpg"
     picture = Rails.root.join('spec', 'pictures', 'miojo.jpg')
 
+    user_login(user)
     visit new_recipe_path
 
     fill_in 'Nome',                     with: recipe.name
@@ -33,7 +34,15 @@ feature 'User register recipes' do
     expect(page).to have_content recipe.difficulty.humanize
     expect(page).to have_content recipe.ingredients
     expect(page).to have_content recipe.prep_steps
-
     expect(page).to have_xpath("//img[contains(@src,'miojo')]")
+  end
+end
+
+def user_login(user)
+  visit login_path
+  within 'section#login' do
+    fill_in 'E-mail', with: user.mail
+    fill_in 'Senha',  with: user.password
+    click_on 'Entrar'
   end
 end

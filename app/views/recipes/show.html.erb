@@ -1,5 +1,5 @@
 <section id="recipe">
-  <div>
+  <div class="image">
     <%= image_tag @recipe.picture.url unless @recipe.picture.blank? %>
   </div>
   <div>
@@ -20,6 +20,10 @@
       <dt>Passo a passo</dt>
       <dd><%= @recipe.prep_steps %></dd>
     </dl>
+    <% if @recipe.user == current_user %>
+      <p><%= button_to "Editar", edit_recipe_path(@recipe), method: :get %></p>
+      <%= button_to "Excluir", @recipe_id, method: :delete %>
+    <% end %>
   </div>
 </section>
 

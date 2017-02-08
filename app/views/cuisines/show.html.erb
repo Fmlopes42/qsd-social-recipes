@@ -4,7 +4,10 @@
 
 <section id="recipes">
   <% @cuisine.recipes.each do |recipe| %>
-    <h3><%= recipe.name %></h3>
+    <div class="image">
+      <%= image_tag recipe.picture.url unless recipe.picture.blank? %>
+    </div>
+    <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
     <dl>
       <dt>Tipo de comida</dt>
       <dd><%= recipe.food_type.name %></dd>
@@ -14,11 +17,11 @@
       <dd><%= recipe.prep_time %></dd>
       <dt>Dificuldade</dt>
       <dd><%= recipe.difficulty.humanize %></dd>
-      <dt>Ingredientes</dt>
-      <dd><%= recipe.ingredients %></dd>
-      <dt>Passo a passo</dt>
-      <dd><%= recipe.prep_steps %></dd>
     </dl>
+    <% if recipe.user == current_user %>
+      <p><%= button_to "Editar", edit_recipe_path(recipe), method: :get %></p>
+      <%= button_to "Excluir", @recipe_id, method: :delete %>
+    <% end %>
   <% end%>
 </section>
 

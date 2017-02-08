@@ -21,8 +21,6 @@ feature 'User see recipe by cuisine' do
       expect(page).to have_content recipe.serves
       expect(page).to have_content recipe.prep_time
       expect(page).to have_content recipe.difficulty.humanize
-      expect(page).to have_content recipe.ingredients
-      expect(page).to have_content recipe.prep_steps
     end
   end
 end

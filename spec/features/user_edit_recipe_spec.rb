@@ -11,13 +11,7 @@ feature 'User edit recipe' do
                                                  ingredients: 'Outros',
                                                  prep_steps: 'Passos2'))
 
-    visit login_path
-
-    within 'section#login' do
-      fill_in 'E-mail',          with: user.mail
-      fill_in 'Senha',           with: user.password
-      click_on 'Entrar'
-    end
+    user_login(user)
 
     visit recipe_path(recipe)
     click_on 'Editar'
@@ -37,5 +31,32 @@ feature 'User edit recipe' do
     expect(page).to have_content recipe.difficulty.humanize
     expect(page).to have_content recipe2.ingredients
     expect(page).to have_content recipe2.prep_steps
+  end
+
+  scenario 'and cant save if invalid' do
+    food_type = create(:food_type)
+    cuisine = create(:cuisine)
+    user = create(:user)
+    recipe = create(:recipe, food_type: food_type, cuisine: cuisine, user: user)
+    user_login(user)
+    visit recipe_path(recipe)
+    click_on 'Editar'
+
+    fill_in 'Quantas pessoas serve',    with: 'abc'
+    fill_in 'Tempo de preparo',         with: 'abc'
+    fill_in 'Ingredientes',             with: ''
+    fill_in 'Passo a passo',            with: ''
+    click_on 'Editar Receita'
+
+    expect(page).to have_content 'Não foi possível editar a receita.'
+  end
+end
+
+def user_login(user)
+  visit login_path
+  within 'section#login' do
+    fill_in 'E-mail', with: user.mail
+    fill_in 'Senha',  with: user.password
+    click_on 'Entrar'
   end
 end

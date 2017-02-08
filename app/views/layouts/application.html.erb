@@ -25,18 +25,20 @@
             </div>
           </section>
 
-          <% if current_user %>
-            <div class="col-md-6 text-right">
-              <%= button_to "Sair", logout_path, method: "delete" %>
-            </div>
-          <% else %>
-            <div class="col-md-2 text-right">
-              <%= button_to "Entrar", login_path, method: "get" %>
-            </div>
-            <div class="col-md-3">
-              <%= button_to "Criar usuário", new_user_path, method: "get" %>
-            </div>
-          <% end %>
+          <section id="authentication">
+            <% if current_user %>
+              <div class="col-md-6 text-right">
+                <%= button_to "Sair", logout_path, method: "delete" %>
+              </div>
+            <% else %>
+              <div class="col-md-2 text-right">
+                <%= button_to "Entrar", login_path, method: "get" %>
+              </div>
+              <div class="col-md-3">
+                <%= button_to "Criar usuário", new_user_path, method: "get" %>
+              </div>
+            <% end %>
+          </section>
         </div>
 
     </header>

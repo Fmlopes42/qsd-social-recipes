@@ -16,10 +16,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-    collections_all
-  end
+  # def show
+  #  @user = User.find(params[:id])
+  #  collections_all
+  # end
 
   private
 
