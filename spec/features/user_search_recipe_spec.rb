@@ -49,5 +49,6 @@ feature 'User search recipe from any page' do
     fill_in 'Buscar Receita', with: another_recipe_search
     click_on 'Buscar'
     expect(page).to have_content another_recipe.name
+    expect(page).not_to have_content recipe.name
   end
 end
