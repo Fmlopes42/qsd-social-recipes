@@ -11,11 +11,11 @@ feature 'User see his profile' do
 
     within('section#recipes') do
       expect(page).to have_content recipe.name
-      expect(page).to have_content recipe.food_type
-      expect(page).to have_content recipe.cuisine
+      expect(page).to have_content recipe.food_type.name
+      expect(page).to have_content recipe.cuisine.name
     end
 
-    whitin('section#user') do
+    within('section#user') do
       expect(page).to have_content user.name
       expect(page).to have_content user.city
       expect(page).to have_content user.mail

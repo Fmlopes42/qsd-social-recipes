@@ -1,15 +1,24 @@
 <section id="user">
-  <%= @user.name %>
-  <%= @user.mail %>
+  <address>
+    <p><strong><%= @user.name %></strong></p>
+    <p><%= @user.mail %></p>
+    <p><a href="mailto:#"><%= @user.city %></a></p>
+  </address>
 </section>
 
 <section id="recipes">
   <h1>Recipes</h1>
-  <p><%= link_to "Criar receita", new_recipe_path %></p>
+  <p><%= link_to "Criar receita", new_recipe_path, class: 'btn btn-default' %></p>
 
   <% @user.recipes.each do |recipe| %>
-    <%= link_to recipe.name, recipe_path(recipe) %>
+    <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+    <dl class="dl-horizontal">
+      <dt>Tipo de comida</dt>
+      <dd><%= recipe.food_type.name %></dd>
+      <dt>Cozinha</dt>
+      <dd><%= recipe.cuisine.name %></dd>
+    </dl>
   <% end %>
 </section>
 
-<p><%= button_to "Voltar", root_path, method: :get %>
+<p><%= link_to "Voltar", root_path, method: :get, class: 'btn btn-default' %>

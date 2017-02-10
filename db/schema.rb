@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130204116) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20170210230114) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string   "name"
@@ -42,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170130204116) do
     t.string   "picture"
     t.integer  "food_type_id"
     t.integer  "user_id"
-    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id", using: :btree
-    t.index ["food_type_id"], name: "index_recipes_on_food_type_id", using: :btree
-    t.index ["user_id"], name: "index_recipes_on_user_id", using: :btree
+    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
+    t.index ["food_type_id"], name: "index_recipes_on_food_type_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,9 +50,7 @@ ActiveRecord::Schema.define(version: 20170130204116) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "city"
   end
 
-  add_foreign_key "recipes", "cuisines"
-  add_foreign_key "recipes", "food_types"
-  add_foreign_key "recipes", "users"
 end
