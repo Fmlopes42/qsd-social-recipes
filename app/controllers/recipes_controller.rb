@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find params[:id]
   end
-  
+
   def search
     search = params[:search]
     @recipes = Recipe.all.select do |recipe|
@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
   def update
     collections_all
     @recipe = Recipe.find params[:id]
+    # if current_user == Recipe.user
     if @recipe.update recipe_params
       redirect_to @recipe
       flash[:notice] = 'Receita editada com sucesso!'
@@ -56,7 +57,7 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find params[:id]
-    recipe.destroy
+    recipe.destroy # if current_user == Recipe.user
     redirect_to root_url
     flash[:notice] = 'Receita excluida com sucesso!'
   end

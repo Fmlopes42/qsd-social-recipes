@@ -8,8 +8,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.save
     if @user.save
-      # current_user = @user
-      # redirect_to rot_path
       redirect_to login_path
       flash[:notice] = 'Usuário criado com sucesso!'
     else
