@@ -51,6 +51,7 @@ class RecipesController < ApplicationController
   def update
     collections_all
     @recipe = Recipe.find params[:id]
+    @recipe.update recipe_params if @recipe.user == current_user
     if @recipe.update recipe_params
       redirect_to @recipe
       flash[:notice] = 'Receita editada com sucesso!'
