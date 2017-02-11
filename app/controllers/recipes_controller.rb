@@ -40,12 +40,17 @@ class RecipesController < ApplicationController
   def edit
     @recipe = Recipe.find params[:id]
     collections_all
+    if @recipe.user == current_user
+      render :edit
+    else
+      flash[:notice] = 'Você não pode editar essa receita.'
+      redirect_to root_url
+    end
   end
 
   def update
     collections_all
     @recipe = Recipe.find params[:id]
-    # if current_user == Recipe.user
     if @recipe.update recipe_params
       redirect_to @recipe
       flash[:notice] = 'Receita editada com sucesso!'
@@ -57,9 +62,14 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find params[:id]
-    recipe.destroy # if current_user == Recipe.user
-    redirect_to root_url
-    flash[:notice] = 'Receita excluida com sucesso!'
+    if recipe.user == current_user
+      recipe.destroy
+      redirect_to user_path(recipe.user)
+      flash[:notice] = 'Receita excluida com sucesso!'
+    else
+      flash.now[:notice] = 'Você não pode excluir essa receita.'
+      render :index
+    end
   end
 
   private
