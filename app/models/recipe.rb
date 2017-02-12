@@ -11,4 +11,8 @@ class Recipe < ApplicationRecord
   def is_favorite?(user)
     self.favorites.where(:user_id == user).any?
   end
+
+  def favorited_by(user)
+    favorites.where(:user_id == user && :recipe_id == self)
+  end
 end
