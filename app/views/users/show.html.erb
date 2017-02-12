@@ -6,19 +6,36 @@
   </address>
 </section>
 
-<section id="recipes">
-  <h1>Recipes</h1>
-  <p><%= link_to "Criar receita", new_recipe_path, class: 'btn btn-default' %></p>
+<div class="col-md-6">
+  <section id="recipes">
+    <h1>Recipes</h1>
+    <p><%= link_to "Criar receita", new_recipe_path, class: 'btn btn-default' %></p>
 
-  <% @user.recipes.each do |recipe| %>
-    <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
-    <dl class="dl-horizontal">
-      <dt>Tipo de comida</dt>
-      <dd><%= recipe.food_type.name %></dd>
-      <dt>Cozinha</dt>
-      <dd><%= recipe.cuisine.name %></dd>
-    </dl>
-  <% end %>
-</section>
+    <% @user.recipes.each do |recipe| %>
+      <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+      <dl class="dl-horizontal">
+        <dt>Tipo de comida</dt>
+        <dd><%= recipe.food_type.name %></dd>
+        <dt>Cozinha</dt>
+        <dd><%= recipe.cuisine.name %></dd>
+      </dl>
+    <% end %>
+  </section>
+</div>
 
+<div class="col-md-6">
+  <section id="favorites">
+    <h1>Minhas favoritas</h1>
+    <% @user.favorites.each do |favorite| %>
+      <% recipe = Recipe.find(favorite[:recipe_id]) %>
+      <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+      <dl class="dl-horizontal">
+        <dt>Tipo de comida</dt>
+        <dd><%= recipe.food_type.name %></dd>
+        <dt>Cozinha</dt>
+        <dd><%= recipe.cuisine.name %></dd>
+      </dl>
+    <% end %>
+  </section>
+</div>
 <p><%= link_to "Voltar", root_path, method: :get, class: 'btn btn-default' %>

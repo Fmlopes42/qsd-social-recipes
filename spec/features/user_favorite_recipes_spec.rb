@@ -10,6 +10,7 @@ feature 'User can favorite recipes' do
 
     click_on 'Favoritar'
     expect(page).to have_content 'Favorita!'
+    expect(page).to have_button 'Desfavoritar'
   end
 
   scenario 'and unfavorite them' do
@@ -19,8 +20,11 @@ feature 'User can favorite recipes' do
 
     visit recipe_path(recipe)
 
+    click_on 'Favoritar'
+
     click_on 'Desfavoritar'
     expect(page).not_to have_content 'Favorita!'
+    expect(page).to have_button 'Favoritar'
   end
 
   scenario 'from the home page' do
@@ -30,10 +34,11 @@ feature 'User can favorite recipes' do
 
     visit root_path
 
-    within 'section#recipes' do
+    within 'section#favorite' do
       click_on 'Favoritar'
     end
     expect(page).to have_content 'Favorita!'
+    expect(page).to have_button 'Desfavoritar'
   end
 
   scenario 'and see them later' do
@@ -47,15 +52,19 @@ feature 'User can favorite recipes' do
       click_on 'Favoritar'
     end
 
-    visit favorites_path(user)
+    visit user_path(user)
 
     expect(page).to have_content 'Minhas favoritas'
+    expect(page).to have_content recipe.name
+    expect(page).to have_content recipe.food_type.name
+    expect(page).to have_content recipe.cuisine.name
   end
 
   def create_recipe(user)
-    food_type = create(:food_type)
-    cuisine = create(:cuisine)
-    recipe = create(:recipe, food_type: food_type, cuisine: cuisine, user: user)
+    food_type = create(:food_type, name: "Jantar")
+    cuisine = create(:cuisine, name: "Romana")
+    recipe = create(:recipe, name: "Rigatoni", food_type: food_type,
+                             cuisine: cuisine, user: user)
   end
 
   def user_login(user)
