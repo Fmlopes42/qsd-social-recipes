@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
     self.favorites.where(:user_id == user).any?
   end
 
-  def favorited_by(user)
-    favorites.where(:user_id == user && :recipe_id == self)
+  def find_favorite_id
+    self.favorites.first.where(:user_id == user)
   end
 end
