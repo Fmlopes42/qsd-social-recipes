@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'User can favorite recipes' do
   scenario 'succesfully' do
     user = create(:user)
-    recipe = create_recipe(user)
+    user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')
+    recipe = create_recipe(user2)
     user_login(user)
 
     visit recipe_path(recipe)
@@ -15,7 +16,8 @@ feature 'User can favorite recipes' do
 
   scenario 'and unfavorite them' do
     user = create(:user)
-    recipe = create_recipe(user)
+    user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')
+    recipe = create_recipe(user2)
     user_login(user)
 
     visit recipe_path(recipe)
@@ -23,13 +25,17 @@ feature 'User can favorite recipes' do
     click_on 'Favoritar'
 
     click_on 'Desfavoritar'
+
+    visit user_path(user)
+
+    expect(page).not_to have_content recipe.name
     expect(page).not_to have_content 'Favorita!'
-    expect(page).to have_button 'Favoritar'
   end
 
   scenario 'from the home page' do
     user = create(:user)
-    recipe = create_recipe(user)
+    user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')
+    recipe = create_recipe(user2)
     user_login(user)
 
     visit root_path
@@ -43,7 +49,8 @@ feature 'User can favorite recipes' do
 
   scenario 'and see them later' do
     user = create(:user)
-    recipe = create_recipe(user)
+    user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')
+    recipe = create_recipe(user2)
     user_login(user)
 
     visit root_path
