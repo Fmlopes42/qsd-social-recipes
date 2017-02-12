@@ -4,6 +4,7 @@
   </div>
   <div class="dl-horizontal">
     <h1><%= @recipe.name %></h1>
+    <%= render partial: "favorite" %>
     <dl>
       <dt>Tipo de comida</dt>
       <dd><%= @recipe.food_type.name %></dd>
@@ -27,5 +28,5 @@
       <%= link_to "Excluir", @recipe_id, method: :delete, class: "btn btn-default" %>
     <% end %>
   </div>
-  <%= link_to "Voltar", root_path, method: :get, class: "btn btn-default" %>
+  <%= link_to "Voltar", root_path, method: :get, class: "btn btn-default btn-xs" %>
 </section>

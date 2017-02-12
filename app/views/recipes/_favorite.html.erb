@@ -1,0 +1,8 @@
+<% if @recipe.is_favorite?(current_user) %>
+  <strong>Favorita!</strong>
+  <%= button_to "Desfavoritar", recipe_path(@recipe.id), method: :delete, class: "btn btn-default btn-xs" %>
+<% else %>
+  <%= button_to favorites_path, method: :post, class: "btn btn-default btn-xs" do %>
+    <strong>Favoritar</strong>
+  <% end %>
+<% end %>

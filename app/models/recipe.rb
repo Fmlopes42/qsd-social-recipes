@@ -4,6 +4,11 @@ class Recipe < ApplicationRecord
   belongs_to :cuisine
   belongs_to :food_type
   belongs_to :user
+  has_many :favorites
   enum difficulty: { easy: 1, medium: 2, hard: 3 }
   mount_uploader :picture, PictureUploader
+
+  def is_favorite?(user)
+    self.favorites.where(:user_id == user).any?
+  end
 end
