@@ -88,5 +88,6 @@ class RecipesController < ApplicationController
     @cuisines = Cuisine.all
     @food_types = FoodType.all
     @users = User.all
+    @favorite = Favorite.all
   end
 end

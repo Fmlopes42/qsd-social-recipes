@@ -32,5 +32,6 @@ class UsersController < ApplicationController
     @recipes = Recipe.all
     @cuisines = Cuisine.all
     @food_types = FoodType.all
+    @favorite = Favorite.all
   end
 end
