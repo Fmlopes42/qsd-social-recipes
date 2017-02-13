@@ -19,15 +19,11 @@ feature 'User see recipes list' do
     expect(page).to have_content recipe.prep_time
     expect(page).to have_content recipe.serves
     expect(page).to have_content recipe.difficulty.humanize
-    expect(page).to have_content recipe.ingredients
-    expect(page).to have_content recipe.prep_steps
     expect(page).to have_content another_recipe.name
     expect(page).to have_content another_recipe.cuisine.name
     expect(page).to have_content another_recipe.food_type.name
     expect(page).to have_content another_recipe.prep_time
     expect(page).to have_content another_recipe.serves
     expect(page).to have_content another_recipe.difficulty.humanize
-    expect(page).to have_content another_recipe.ingredients
-    expect(page).to have_content another_recipe.prep_steps
   end
 end
