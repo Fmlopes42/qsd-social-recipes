@@ -8,11 +8,7 @@ class Recipe < ApplicationRecord
   enum difficulty: { easy: 1, medium: 2, hard: 3 }
   mount_uploader :picture, PictureUploader
 
-  def is_favorite?(user)
-    self.favorites.where(:user_id == user).any?
-  end
-
-  def find_favorite_id
-    self.favorites.first.where(:user_id == user)
+  def favorite_by?(user)
+    favorites.where(user: user).any?
   end
 end
