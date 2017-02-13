@@ -32,21 +32,6 @@ feature 'User can favorite recipes' do
     expect(page).not_to have_content 'Favorita!'
   end
 
-  scenario 'from the home page' do
-    user = create(:user)
-    user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')
-    recipe = create_recipe(user2)
-    user_login(user)
-
-    visit root_path
-
-    within 'section#favorite' do
-      click_on 'Favoritar'
-    end
-    expect(page).to have_content 'Favorita!'
-    expect(page).to have_button 'Desfavoritar'
-  end
-
   scenario 'and see them later' do
     user = create(:user)
     user2 = create(:user, name: 'Ana', mail: 'ana@ana.com')

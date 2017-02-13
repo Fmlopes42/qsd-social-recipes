@@ -18,7 +18,7 @@
   </section>
 </div>
 
-<div class="col-md-8">
+<div class="col-md-4">
   <section id="recipes">
     <h1>Receitas</h1>
     <% @recipes.each do |recipe| %>
@@ -26,6 +26,15 @@
         <%= image_tag recipe.picture.url, width: 200, height: 200 unless recipe.picture.blank? %>
         <div class="caption">
           <h2 class="text-center"><%= link_to recipe.name, recipe_path(recipe) %></h2>
+          <section id="favorite">
+            <% if current_user %>
+              <% if recipe.is_favorite?(current_user) %>
+                <strong>Favorita!</strong>
+              <% else %>
+                <strong><%= button_to "Favoritar", favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post, class: "btn btn-default btn-xs" %></strong>
+              <% end %>
+            <% end %>
+          </section>
           <dl class="dl-horizontal">
             <dt>Cozinha</dt>
             <dd><%= recipe.cuisine.name%></dd>
@@ -42,15 +51,6 @@
             <dt>Passo a passo</dt>
             <dd><%= recipe.prep_steps %></dd>
           </dl>
-
-          <section id="favorite">
-            <% if recipe.is_favorite?(current_user) %>
-              <strong>Favorita!</strong>
-              <%= button_to "Desfavoritar", favorite_path(current_user.id), method: :delete, class: "btn btn-default btn-xs" %>
-            <% else %>
-              <strong><%= button_to "Favoritar", favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post, class: "btn btn-default btn-xs" %></strong>
-            <% end %>
-          </section>
 
           <section id="management">
             <% if recipe.user == current_user %>
