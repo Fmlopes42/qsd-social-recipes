@@ -28,7 +28,7 @@
           <h2 class="text-center"><%= link_to recipe.name, recipe_path(recipe) %></h2>
           <section id="favorite">
             <% if current_user %>
-              <% if recipe.is_favorite?(current_user) %>
+              <% if recipe.favorite_by?(current_user) %>
                 <strong>Favorita!</strong>
               <% else %>
                 <strong><%= button_to "Favoritar", favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post, class: "btn btn-default btn-xs" %></strong>
